@@ -23,14 +23,19 @@ export default class App extends React.Component {
     data: Object.assign({}, this.emptyData)
   }
 
+  handleLinkingUrl = url=>{
+    if(/^\s*https?:\/\//i.test(url)) {
+      ToastModule.show('收到链接: '+url, ToastModule.SHORT)
+      this.setData({url: url.trim()}, this.fetchInfo)
+    }
+  }
+
   componentDidMount(){
-    ToastModule.getText(text=>{
-      if(/^\s*https?:\/\//i.test(text)) {
-        ToastModule.show('收到链接: '+text, ToastModule.SHORT)
-        this.setData({url: text})
-        this.fetchInfo()
-      }
-    })
+    ToastModule.getText(this.handleLinkingUrl)
+
+    Linking.getInitialURL()
+    .then(this.handleLinkingUrl)
+    .catch(err => console.error('An error occurred', err))
   }
 
   onSubmit = ()=>{
@@ -54,9 +59,9 @@ export default class App extends React.Component {
     })
   }
 
-  setData = (obj)=>{
+  setData = (obj, cb)=>{
     const newData = Object.assign({}, this.state.data, obj)
-    this.setState({data: newData})
+    this.setState({data: newData}, cb)
   }
 
   validModal = (oldUrl)=>{
