@@ -1,9 +1,10 @@
 import React from 'react'
+import mapValue from 'map-value'
 import {
   StyleSheet, Dimensions,
-  Text, TextInput, View, Button, Modal, TouchableHighlight
+  Text, TextInput, View, Button, Modal, TouchableHighlight, KeyboardAvoidingView,
 } from 'react-native'
-import {ensureHTTP} from '../../utils'
+import {ensureHTTP, fetchURLInfo} from '../../utils'
 import ModalDialog from './modal'
 
 var width = Dimensions.get('window').width
@@ -46,11 +47,18 @@ export default class App extends React.Component {
     this.setState({data: newData})
   }
 
+  validModal = (oldUrl)=>{
+    return oldUrl===this.state.data.url
+  }
+
   render () {
     const {state} = this
     const {data} = state
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        keyboardVerticalOffset={100}
+      >
 
         <View style={styles.line}>
           <Text style={{
@@ -81,6 +89,29 @@ export default class App extends React.Component {
             onChangeText={url=>{
               this.setData({url: ensureHTTP(url)})
             }}
+            onBlur={e => {
+              const oldUrl = data.url
+            fetchURLInfo(data.url)
+              .then(json => {
+                console.log(json)
+                if (!json.error && this.validModal(oldUrl)) {
+                  const {
+                    url,
+                    title,
+                    desc,
+                    favicon
+                  } = json
+                  this.setData(mapValue({
+                    url, title, desc, favicon
+                  }, {
+                    url: v=>data.url ? {} : v,
+                    title: v=>data.title ? {} : v,
+                    desc: v=>data.desc ? {} : v,
+                  }))
+                }
+              })
+              .catch(err => console.error(err))
+          }}
           />
         </View>
         <View style={styles.line}>
@@ -97,8 +128,9 @@ export default class App extends React.Component {
         <View style={styles.line}>
           <Text style={styles.inputTitle}>Desc</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, {height:100}]}
             value={data.desc}
+            multiline={true}
             placeholder="Enter Desc"
             onChangeText={desc=>{
               this.setData({desc})
@@ -121,7 +153,7 @@ export default class App extends React.Component {
           this.setState({infoText: ''})
           }} /> */}
 
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -150,13 +182,14 @@ const styles = StyleSheet.create({
     minWidth: 35,
     marginRight: 10,
     // borderWidth: 1,
-    paddingTop: 6,
+    paddingTop: 10,
   },
   input: {
     flex:1,
+    fontSize: 16,
     // alignSelf: 'stretch',
     // minWidth: width - 60,
-    height: 35,
+    height: 40,
     // borderWidth: 1
   },
 })

@@ -17,6 +17,7 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "map-value": "^1.1.1",
     "react": "16.2.0",
     "react-native": "0.52.0"
   }

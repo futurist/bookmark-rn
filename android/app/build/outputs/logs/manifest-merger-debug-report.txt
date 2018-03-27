@@ -67,7 +67,7 @@ ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.
 	android:label
 		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:21:9-41
 	android:windowSoftInputMode
-		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:23:9-51
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:23:9-48
 	android:configChanges
 		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:22:9-79
 	android:name
