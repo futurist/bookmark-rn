@@ -2,13 +2,14 @@ import React from 'react'
 import mapValue from 'map-value'
 import {
   StyleSheet, Dimensions,
-  Text, TextInput, View, Button, Modal, TouchableHighlight, KeyboardAvoidingView,
+  Text, TextInput, View, Button, Modal, TouchableHighlight, KeyboardAvoidingView, Linking, Platform, NativeModules,
 } from 'react-native'
 import {ensureHTTP, fetchURLInfo} from '../../utils'
 import ModalDialog from './modal'
 
-var width = Dimensions.get('window').width
-var height = Dimensions.get('window').height
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
+const {ToastModule} = NativeModules
 
 export default class App extends React.Component {
   emptyData = {
@@ -22,7 +23,18 @@ export default class App extends React.Component {
     data: Object.assign({}, this.emptyData)
   }
 
+  componentDidMount(){
+    ToastModule.getText(text=>{
+      if(/^\s*https?:\/\//i.test(text)) {
+        ToastModule.show('收到链接: '+text, ToastModule.SHORT)
+        this.setData({url: text})
+        this.fetchInfo()
+      }
+    })
+  }
+
   onSubmit = ()=>{
+    
     const {data} = this.state
     fetch('http://jamesjson.herokuapp.com/api/bookmark', {
       method:'POST',
@@ -49,6 +61,31 @@ export default class App extends React.Component {
 
   validModal = (oldUrl)=>{
     return oldUrl===this.state.data.url
+  }
+
+  fetchInfo = ()=>{
+    const {data} = this.state
+    const oldUrl = data.url
+    fetchURLInfo(data.url)
+      .then(json => {
+        console.log(json)
+        if (!json.error && this.validModal(oldUrl)) {
+          const {
+            url,
+            title,
+            desc,
+            favicon
+          } = json
+          this.setData(mapValue({
+            url, title, desc, favicon
+          }, {
+            url: v=>data.url ? {} : v,
+            title: v=>data.title ? {} : v,
+            desc: v=>data.desc ? {} : v,
+          }))
+        }
+      })
+      .catch(err => console.error(err))
   }
 
   render () {
@@ -89,29 +126,7 @@ export default class App extends React.Component {
             onChangeText={url=>{
               this.setData({url: ensureHTTP(url)})
             }}
-            onBlur={e => {
-              const oldUrl = data.url
-            fetchURLInfo(data.url)
-              .then(json => {
-                console.log(json)
-                if (!json.error && this.validModal(oldUrl)) {
-                  const {
-                    url,
-                    title,
-                    desc,
-                    favicon
-                  } = json
-                  this.setData(mapValue({
-                    url, title, desc, favicon
-                  }, {
-                    url: v=>data.url ? {} : v,
-                    title: v=>data.title ? {} : v,
-                    desc: v=>data.desc ? {} : v,
-                  }))
-                }
-              })
-              .catch(err => console.error(err))
-          }}
+            onBlur={this.fetchInfo}
           />
         </View>
         <View style={styles.line}>

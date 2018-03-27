@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:1:1-32:12
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:1:1-44:12
 	package
 		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:2:5-29
 		INJECTED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml
@@ -46,7 +46,7 @@ MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/pro/projects/bookmark-
 		INJECTED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml
 application
-ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:13:5-30:19
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:13:5-42:19
 MERGED from [com.facebook.react:react-native:0.52.0] /Users/pro/projects/bookmark-rn/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.52.0/AndroidManifest.xml:13:5-20
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/pro/projects/bookmark-rn/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.0.1] /Users/pro/projects/bookmark-rn/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:22:5-20
@@ -63,7 +63,7 @@ MERGED from [org.webkit:android-jsc:r174650] /Users/pro/projects/bookmark-rn/and
 	android:name
 		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:14:7-38
 activity#com.bookmarkrn.MainActivity
-ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:19:7-28:18
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:19:7-40:18
 	android:label
 		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:21:9-41
 	android:windowSoftInputMode
@@ -82,13 +82,41 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:26:13-73
 	android:name
 		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:26:23-70
-activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:29:7-84
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:28:9-34:25
+	android:label
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:28:24-45
+action#android.intent.action.VIEW
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:29:13-65
 	android:name
-		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:29:17-81
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:29:21-62
+category#android.intent.category.DEFAULT
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:30:13-72
+	android:name
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:30:23-69
+category#android.intent.category.BROWSABLE
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:31:13-74
+	android:name
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:31:23-71
+data
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:32:13-43
+	android:scheme
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:32:19-40
+intent-filter#android.intent.action.SEND+android.intent.category.DEFAULT
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:35:9-39:25
+	android:label
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:35:24-45
+action#android.intent.action.SEND
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:36:13-65
+	android:name
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:36:21-62
+activity#com.facebook.react.devsupport.DevSettingsActivity
+ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:41:7-84
+	android:name
+		ADDED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:41:17-81
 android:uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-IMPLIED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:1:1-32:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
+IMPLIED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:1:1-44:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 android:uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:1:1-32:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
+IMPLIED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:1:1-44:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 android:uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:1:1-32:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
+IMPLIED from /Users/pro/projects/bookmark-rn/android/app/src/main/AndroidManifest.xml:1:1-44:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
