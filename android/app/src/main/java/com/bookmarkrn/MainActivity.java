@@ -18,6 +18,11 @@ public class MainActivity extends ReactActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
         // Get intent, action and MIME type
         Intent intent = getIntent();
         String action = intent.getAction();

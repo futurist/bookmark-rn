@@ -33,9 +33,14 @@ export default class App extends React.Component {
   componentDidMount(){
     ToastModule.getText(this.handleLinkingUrl)
 
+    Linking.addEventListener('url', e=>this.handleLinkingUrl(e.url))
     Linking.getInitialURL()
     .then(this.handleLinkingUrl)
     .catch(err => console.error('An error occurred', err))
+  }
+
+  componentWillUnmount() {
+    Linking.removeEventListener('url', this.handleLinkingUrl)
   }
 
   onSubmit = ()=>{
